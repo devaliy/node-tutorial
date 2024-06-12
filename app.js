@@ -1,12 +1,21 @@
-const fs = require('fs');
-fs.writeFileSync('app.txt', 'Hi Welcome Aliu to the node js course')
-console.log(fs.readFileSync('app.txt').toString())
+const express = require('express');
+const path = require('path')
+const app = express();
 
-
-
-// const {
-//     obj,func
-// } = require('./utils')
-// console.log(obj)
-// console.log(func(3, 4))
-// console.log(__dirname, __filename)
+app.use(express.urlencoded({extended:true}))
+app.use('/add-product', (req,res, next) => {
+    console.log("First Middleware")
+    // res.send('')
+    //   console.log('First Middleware')
+    res.sendFile(path.join(__dirname, 'views', 'product.html'));
+})
+app.use('/product', (req, res, next) => {
+    console.log(req.body);
+    res.redirect('/');
+})
+app.use('/', (req,res, next) => {
+    console.log('Second Middleware')
+    res.sendFile(path.join(__dirname,'views', 'shop.html'))
+})
+app.listen(3000)
+ 
