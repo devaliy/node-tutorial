@@ -1,5 +1,5 @@
 const fs = require('fs');
-fs.writeFileSync('app.txt', 'Hi Welcome to the node js course')
+fs.writeFileSync('app.txt', 'Hi Welcome Aliu to the node js course')
 console.log(fs.readFileSync('app.txt').toString())
 
 
